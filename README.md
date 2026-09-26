@@ -1,55 +1,94 @@
-# Ecommerce UI Automation Framework
+# ⚡ Ecommerce UI Automation Framework (SauceDemo)
 
-## 1. Project Overview
-This repository contains a production-quality, portfolio-level **Java Selenium UI Automation Framework** designed for automated functional, regression, data-driven, and end-to-end (E2E) testing of an e-commerce web application. Built using modern Java 21 features, TestNG, and the Page Object Model (POM) design pattern, this framework demonstrates industry-standard practices in test design, thread-safe driver management, monetary precision assertions, explicit wait synchronization, and CI/CD integration.
+<p align="center">
+  <b>Enterprise-Grade SDET Automation Framework for <a href="https://www.saucedemo.com/">SauceDemo (Swag Labs)</a></b><br>
+  Built with <b>Java 21</b>, <b>Selenium WebDriver 4.29.0</b>, <b>TestNG 7.11.0</b>, <b>Selenium Manager</b>, <b>Allure Reports 2.29.0</b>, <b>OpenCSV</b>, and <b>GitHub Actions CI/CD</b>.
+</p>
 
----
-
-## 2. Application Under Test
-* **Name:** SauceDemo (Swag Labs)
-* **URL:** [https://www.saucedemo.com/](https://www.saucedemo.com/)
-* **Description:** A standard web application used for demonstrating e-commerce workflows, including user authentication, product catalog browsing, sorting, shopping cart management, customer information submission, order overview mathematical calculations, and checkout completion.
-
----
-
-## 3. Technology Stack
-* **Programming Language:** Java 21 (JDK 21)
-* **Core Automation Engine:** Selenium WebDriver 4.29.0
-* **Driver Management:** Native Selenium 4 Selenium Manager (Zero `WebDriverManager` external dependencies)
-* **Test Runner & Framework:** TestNG 7.11.0
-* **Build Tool:** Apache Maven 3.9+
-* **Design Pattern:** Page Object Model (POM) + ThreadLocal Driver Factory
-* **Data-Driven Testing:** TestNG `@DataProvider` with OpenCSV 5.10
-* **Reporting Engine:** Allure TestNG 2.29.0
-* **Logging Framework:** SLF4J 2.0.16 + Logback Classic 1.5.16
-* **CI/CD Integration:** GitHub Actions (`.github/workflows/automation.yml`)
-* **Version Control:** Git & GitHub
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 21" />
+  <img src="https://img.shields.io/badge/Selenium%20WebDriver-4.29.0-43B02A?style=for-the-badge&logo=selenium&logoColor=white" alt="Selenium 4" />
+  <img src="https://img.shields.io/badge/TestNG-7.11.0-FF7F00?style=for-the-badge&logo=testng&logoColor=white" alt="TestNG" />
+  <img src="https://img.shields.io/badge/Apache%20Maven-3.9+-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven" />
+  <img src="https://img.shields.io/badge/Allure-2.29.0-7C5295?style=for-the-badge&logo=qameta&logoColor=white" alt="Allure" />
+  <img src="https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions" />
+  <img src="https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge" alt="License MIT" />
+</p>
 
 ---
 
-## 4. Framework Features
-* **Page Object Model (POM):** Complete separation of element locators and page interaction logic from test assertions.
-* **Thread-Safe Driver Factory:** Uses `ThreadLocal<WebDriver>` to support isolated browser instances per test thread.
-* **Cross-Browser & Execution Modes:** Supports local execution across Chrome, Firefox, and Edge in both headed and headless modes via runtime properties (`-Dbrowser`, `-Dheadless`).
-* **Optional Remote Grid Support:** Built-in capability to target RemoteWebDriver endpoints (e.g. `-Dgrid.enabled=true -Dgrid.url=http://localhost:4444/`).
-* **Configuration Management:** Centralized property loading via `ConfigReader.java` with CLI property override priority (`-Dkey=value`).
-* **Explicit Wait Synchronization:** Standardized on `WebDriverWait` and `ExpectedConditions` in `WaitUtils.java` (Zero `Thread.sleep` or implicit wait conflicts).
-* **Monetary Precision Assertions:** Enforces `java.math.BigDecimal` for all price, subtotal, tax, and total assertions to prevent floating-point rounding errors.
-* **Data-Driven Capabilities:** Externalized negative test datasets in `src/test/resources/testdata/login-data.csv` parsed via OpenCSV.
-* **Failure Artifact Capture:** Automatic failure screenshot generation in `target/screenshots/` and embedded byte attachments in Allure reports.
-* **Structured SLF4J Logging:** Console and file logging for test lifecycle events, browser setup, teardown, and errors without logging plain-text secrets.
-* **Test Categorization Groups:** Organized into `smoke`, `regression`, and `e2e` execution groups.
-* **Automated CI Pipeline:** GitHub Actions workflow triggering on `push`, `pull_request`, and `workflow_dispatch`.
+## 📑 Table of Contents
+
+- [🔍 Overview](#-overview)
+- [🏛 Key Architectural Highlights & Interview Defensibility](#-key-architectural-highlights--interview-defensibility)
+- [🎨 Design Patterns Implemented](#-design-patterns-implemented)
+- [📐 Framework Architecture](#-framework-architecture)
+- [📂 Repository Structure](#-repository-structure)
+- [🧪 Test Coverage Matrix (All 52 Automated Tests)](#-test-coverage-matrix-all-52-automated-tests)
+- [💻 Prerequisites](#-prerequisites)
+- [🚀 Local Setup & Execution](#-local-setup--execution)
+- [📤 Step-by-Step: How to Push to GitHub](#-step-by-step-how-to-push-to-github)
+- [📊 Allure Reporting & Failure Screenshots](#-allure-reporting--failure-screenshots)
+- [⚙️ CI/CD Integration](#️-cicd-integration)
+- [📄 QA Portfolio Documentation](#-qa-portfolio-documentation)
+- [👤 Author & Acknowledgments](#-author--acknowledgments)
 
 ---
 
-## 5. Framework Architecture
+## 🔍 Overview
+
+This repository contains a production-ready, enterprise-grade test automation framework engineered as a showcase portfolio project for **SDET / QA Automation Engineer** roles. It automates comprehensive user journeys across [SauceDemo (Swag Labs)](https://www.saucedemo.com/), covering user authentication, product catalog browsing, dynamic sorting, shopping cart operations, customer checkout information submission, price calculation assertions, order completion, and full end-to-end purchasing scenarios.
+
+The framework strictly adheres to **industry best practices**: zero flaky explicit sleeps (`Thread.sleep`), thread-safe browser management using `ThreadLocal<WebDriver>`, fluent Page Object Model (POM) encapsulation, monetary precision assertions using `java.math.BigDecimal`, automated failure screenshot attachments, structured SLF4J/Logback logging, and automated CI/CD execution via GitHub Actions.
+
+---
+
+## 🏛 Key Architectural Highlights & Interview Defensibility
+
+When discussing this framework in technical interviews, highlight these core engineering decisions:
+
+### 1. 🛡 Thread-Safe Parallel Execution via `ThreadLocal<WebDriver>`
+- **The Challenge:** Parallel test execution with TestNG can lead to thread-safety issues when multiple threads attempt to mutate shared `WebDriver` state.
+- **The Solution:** `DriverFactory.java` isolates driver instances using Java's `ThreadLocal<WebDriver>`. Each executing test thread accesses its own isolated browser context, allowing parallel method execution (`thread-count="2"`) without flaky driver conflicts.
+
+### 2. ⏱ Strict Zero `Thread.sleep` Guarantee
+- Pure explicit synchronization using `WebDriverWait` and `ExpectedConditions` encapsulated in `WaitUtils.java`.
+- Dynamic element locators switch to non-blocking `driver.findElements()` for zero-element empty states to prevent unnecessary 5-second timeouts.
+
+### 3. 💰 Monetary Precision Assertions using `BigDecimal`
+- **The Challenge:** Standard `double` or `float` arithmetic in Java causes floating-point rounding errors (e.g., `29.99 + 9.99 = 39.979999999999997`), causing flaky assertion failures in e-commerce financial totals.
+- **The Solution:** `CheckoutOverviewPage.java` extracts subtotal, tax, and item prices as `java.math.BigDecimal`, performing exact monetary calculations (`Subtotal + Tax = Total`) with `setScale(2, RoundingMode.HALF_UP)`.
+
+### 4. 📁 Runtime Directory Resilience & Allure Integration
+- `ScreenshotUtils.java` automatically creates missing output directories (`target/screenshots/`) before capturing full viewport screenshots upon any test failure.
+- Screenshots are saved with timestamped, sanitized filenames and automatically attached to Allure HTML reports via `@Attachment` byte streaming.
+
+### 5. 🔄 Data-Driven Testing via OpenCSV
+- Negative authentication test cases are externalized in `src/test/resources/testdata/login-data.csv`.
+- `TestDataUtils.java` parses external CSV files using OpenCSV into `Object[][]` arrays for TestNG `@DataProvider` injection.
+
+---
+
+## 🎨 Design Patterns Implemented
+
+| Design Pattern | Implementation Class | Purpose |
+|---|---|---|
+| **Page Object Model (POM)** | `com.qa.pages.*` (7 Page Classes) | Decouples page locators and interaction logic from test assertions. |
+| **Factory Pattern** | `com.qa.base.DriverFactory` | Centralizes creation and configuration of browser instances (Chrome, Firefox, Edge, Headless, Remote Grid). |
+| **Observer Pattern** | `com.qa.listeners.TestListener` | Listens to TestNG lifecycle events (`onTestStart`, `onTestFailure`, `onTestSuccess`) to log execution status and attach screenshots. |
+| **ThreadLocal Storage** | `DriverFactory.driverThreadLocal` | Isolates `WebDriver` instances per executing thread for parallel safety. |
+| **Data-Driven Pattern** | `com.qa.dataproviders.LoginDataProvider` | Injects external CSV test parameters into parameterized TestNG test methods. |
+| **Retry Pattern** | `com.qa.listeners.RetryAnalyzer` | Intercepts transient infrastructure exceptions and retries them (max 1 retry), strictly excluding functional `AssertionError` failures. |
+
+---
+
+## 📐 Framework Architecture
 
 ```mermaid
 graph TD
     A[TestNG Test Suites / CLI Arguments] --> B[BaseTest Lifecycle]
     B --> C[DriverFactory - ThreadLocal]
-    C -->|Selenium Manager| D[Selenium WebDriver 4]
+    C -->|Selenium Manager / Remote Grid| D[Selenium WebDriver 4]
     B --> E[Page Object Models]
     E -->|Locators & Actions| D
     D --> F[SauceDemo Web App]
@@ -60,237 +99,227 @@ graph TD
 
 ---
 
-## 6. Folder Structure
+## 📂 Repository Structure
 
 ```
 Ecommerce-UI-Automation-Framework/
-│
-├── pom.xml                               # Maven build file with Java 21, Selenium, TestNG & Allure dependencies
-├── testng.xml                            # TestNG suite runner with parallel settings & listeners
-├── README.md                             # Framework documentation
-├── .gitignore                            # Git exclusion rules
-│
 ├── .github/
 │   └── workflows/
-│       └── automation.yml                # GitHub Actions CI workflow pipeline
-│
-├── src/main/java/com/qa/
-│   ├── base/
-│   │   └── DriverFactory.java            # ThreadLocal WebDriver manager supporting Local & Grid execution
-│   │
-│   ├── pages/
-│   │   ├── LoginPage.java                # Login page locators & actions
-│   │   ├── InventoryPage.java            # Product catalog page object
-      ├── ProductDetailsPage.java       # Product details page object
-│   │   ├── CartPage.java                 # Cart page object
-│   │   ├── CheckoutInformationPage.java  # Customer details page object
-│   │   ├── CheckoutOverviewPage.java     # Checkout overview & BigDecimal monetary parsing
-│   │   └── CheckoutCompletePage.java     # Order completion confirmation page object
-│   │
-│   └── utils/
-│       ├── ConfigReader.java             # System property & config loader
-│       ├── WaitUtils.java                # Explicit wait utilities
-│       ├── ScreenshotUtils.java          # Local PNG screenshot & Allure attachment generator
-│       └── TestDataUtils.java            # CSV dataset parser via OpenCSV
-│
-├── src/test/java/com/qa/
-│   ├── base/
-│   │   └── BaseTest.java                 # Base test class (@BeforeMethod, @AfterMethod tearDown)
-│   │
-│   ├── tests/
-│   │   ├── LoginTest.java                # Login module test scenarios (TC_LOGIN_001 - 010)
-│   │   ├── InventoryTest.java            # Inventory catalog & sorting tests (TC_INV_001 - 011)
-│   │   ├── ProductDetailsTest.java       # Product details navigation tests (TC_PD_001 - 002)
-│   │   ├── CartTest.java                 # Shopping cart tests (TC_CART_001 - 011)
-│   │   ├── CheckoutTest.java             # Checkout information & total validation tests (TC_CHECKOUT_001 - 014)
-│   │   └── EndToEndTest.java             # 25-step complete purchasing journey (TC_E2E_001)
-│   │
-│   ├── listeners/
-│   │   ├── TestListener.java             # TestNG lifecycle & failure artifact listener
-│   │   ├── RetryAnalyzer.java            # Controlled retry analyzer for transient failures
-│   │   └── AnnotationTransformer.java    # Dynamic listener transformer for TestNG annotations
-│   │
-│   └── dataproviders/
-│       └── LoginDataProvider.java        # DataProvider supplying CSV login data
-│
-├── src/test/resources/
-│   ├── config.properties                 # Default framework property configurations
-│   ├── logback.xml                       # Logback logger layout configuration
-│   ├── allure.properties                 # Allure result directory configuration
-│   └── testdata/
-│       └── login-data.csv                # Data-driven CSV dataset for negative login testing
-│
-└── docs/
-    ├── TestPlan.md                       # QA Master Test Plan
-    ├── TestScenarios.md                  # Test scenario coverage matrix
-    ├── TestCases.csv                     # Test case repository with execution statuses
-    ├── BugReports.md                     # Failure classification log & sample defect report
-    ├── RequirementsTraceabilityMatrix.csv# Requirements traceability matrix
-    ├── TestExecutionSummary.md           # Execution results summary report
-    └── InterviewGuide.md                 # Architecture Q&A for technical interviews
+│       └── automation.yml                # GitHub Actions CI/CD (Tests + Artifacts)
+├── docs/
+│   ├── TestPlan.md                       # Master QA Test Plan
+│   ├── TestScenarios.md                  # Test Scenario Coverage Matrix
+│   ├── TestCases.csv                     # Test Case Repository
+│   ├── BugReports.md                     # Defect Log & Sample Bug Report
+│   ├── RequirementsTraceabilityMatrix.csv# RTM
+│   ├── TestExecutionSummary.md           # Metrics & Results Breakdown
+│   └── InterviewGuide.md                 # Technical Interview Architecture Q&A
+├── reports/
+│   └── .gitkeep                          # Git directory persistence
+├── screenshots/
+│   └── .gitkeep                          # Git directory persistence
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── com/qa/
+│   │           ├── base/
+│   │           │   └── DriverFactory.java # ThreadLocal WebDriver Manager (Local & Remote Grid)
+│   │           ├── pages/
+│   │           │   ├── LoginPage.java
+│   │           │   ├── InventoryPage.java
+│   │           │   ├── ProductDetailsPage.java
+│   │           │   ├── CartPage.java
+│   │           │   ├── CheckoutInformationPage.java
+│   │           │   ├── CheckoutOverviewPage.java
+│   │           │   └── CheckoutCompletePage.java
+│   │           └── utils/
+│   │               ├── ConfigReader.java  # Property reader with CLI override
+│   │               ├── WaitUtils.java     # Explicit wait wrappers (zero Thread.sleep)
+│   │               ├── ScreenshotUtils.java# Failure screenshot generator & Allure attacher
+│   │               └── TestDataUtils.java # OpenCSV data parser
+│   └── test/
+│       ├── java/
+│       │   └── com/qa/
+│       │       ├── base/
+│       │       │   └── BaseTest.java      # Test setup & teardown lifecycle
+│       │       ├── dataproviders/
+│       │       │   └── LoginDataProvider.java # CSV test data provider
+│       │       ├── listeners/
+│       │       │   ├── TestListener.java  # TestNG listener for Allure & logging
+│       │       │   ├── RetryAnalyzer.java # Controlled retry strategy
+│       │       │   └── AnnotationTransformer.java # Dynamic retry annotation injector
+│       │       └── tests/
+│       │           ├── LoginTest.java     # TC_LOGIN_001 - 010 (14 tests)
+│       │           ├── InventoryTest.java # TC_INV_001 - 011 (11 tests)
+│       │           ├── ProductDetailsTest.java # TC_PD_001 - 002 (2 tests)
+│       │           ├── CartTest.java      # TC_CART_001 - 011 (11 tests)
+│       │           ├── CheckoutTest.java  # TC_CHECKOUT_001 - 014 (14 tests)
+│       │           └── EndToEndTest.java  # TC_E2E_001 (1 test / 25 steps)
+│       └── resources/
+│           ├── config.properties          # Default execution parameters
+│           ├── logback.xml                # Logback logger layout configuration
+│           ├── allure.properties          # Allure result directory configuration
+│           └── testdata/
+│               └── login-data.csv         # Negative authentication CSV dataset
+├── .gitignore                             # Git exclusion rules
+├── pom.xml                                # Maven dependencies & compiler plugin
+├── README.md                              # Framework documentation
+└── testng.xml                             # TestNG suite runner & parallel execution config
 ```
 
 ---
 
-## 7. Automated Modules
-1. **Authentication / Login (`LoginTest.java`):** Valid credentials, invalid username, invalid password, empty username, empty password, locked-out user, password masking, logout, CSV data-driven scenarios, and protected page access redirection.
-2. **Product Inventory Catalog (`InventoryTest.java`):** Listing container validation, product titles, BigDecimal prices, image rendering, A-Z/Z-A name sorting via Java Collections, Low-High/High-Low price sorting.
-3. **Product Details (`ProductDetailsTest.java`):** Navigation from catalog to individual item view, title/description/price verification, and back navigation.
-4. **Shopping Cart (`CartTest.java`):** Single item addition, multiple item addition, dynamic badge state counter (0 -> 1 -> 2 -> 1 -> 0), product title/price validation in cart, removal from inventory page, removal from cart page, cart evacuation, and state persistence across page navigation.
-5. **Checkout Flow (`CheckoutTest.java`):** Information submission (first name, last name, zip), missing field validations, payment summary (`SauceCard`), shipping summary (`Free Pony Express`), BigDecimal subtotal calculation, tax validation, mathematical validation (`Total = Subtotal + Tax`), cancel flow, finish checkout, and order completion headers.
-6. **End-to-End Journey (`EndToEndTest.java`):** Realistic 25-step customer purchasing flow from initial login to order confirmation, back to inventory, and final session logout.
+## 🧪 Test Coverage Matrix (All 52 Automated Tests)
+
+| Test Class | Group | Test Count | Key Verification Targets |
+|---|---|---|---|
+| `LoginTest` | `smoke`, `regression` | **14** | Valid login, locked-out user validation, invalid credentials, empty fields, password masking, logout flow, CSV data-driven scenarios, and session security redirects. |
+| `InventoryTest` | `smoke`, `regression` | **11** | Catalog item rendering, title/description/price checks, image link integrity, A-Z and Z-A name sorting, Low-to-High and High-to-Low price sorting. |
+| `ProductDetailsTest` | `regression` | **2** | Deep-link item details navigation, title/description/price checks on product detail view, and return navigation. |
+| `CartTest` | `smoke`, `regression` | **11** | Single and multi-item additions, dynamic badge counter updates (`0 -> 1 -> 2 -> 1 -> 0`), price checks, removal from inventory page, removal from cart page, cart evacuation, state persistence. |
+| `CheckoutTest` | `smoke`, `regression` | **14** | Information form submission, missing field validations (First Name, Last Name, Zip), payment/shipping method summary verification, `BigDecimal` item total, tax calculation, total formula (`Total = Subtotal + Tax`), cancel flow, finish checkout. |
+| `EndToEndTest` | `e2e`, `smoke`, `regression` | **1** | Full 25-step customer purchasing flow from initial authentication, catalog browsing, cart verification, checkout info, price calculation assertion, order confirmation, and session logout. |
 
 ---
 
-## 8. Test Coverage
-* **Total Automated Tests Implemented:** **52 Test Cases** (53 total executions including CSV DataProvider iterations).
-* **Test Classes:** 6 (`LoginTest`, `InventoryTest`, `ProductDetailsTest`, `CartTest`, `CheckoutTest`, `EndToEndTest`).
-* **Pass Rate:** **100%** (52/52 PASSED on standard user execution).
+## 💻 Prerequisites
+
+- **Java Development Kit (JDK)**: Version 21 or higher ([Eclipse Temurin JDK 21 Recommended](https://adoptium.net/))
+- **Apache Maven**: Version 3.9+ (configured in system `PATH`)
+- **Web Browser**: Google Chrome (installed locally; browser drivers managed automatically by Selenium Manager)
+- **Git**: Installed for version control
+
+Verify environment versions:
+```powershell
+java -version
+mvn -version
+git --version
+```
 
 ---
 
-## 9. Prerequisites
-* **Java Development Kit:** JDK 21 installed and configured in system `PATH` (`JAVA_HOME`).
-* **Build Tool:** Apache Maven 3.9+ installed and configured in system `PATH`.
-* **Version Control:** Git.
-* **Browser:** Google Chrome installed locally.
+## 🚀 Local Setup & Execution
 
----
-
-## 10. Installation
+### 1. Clone Repository & Compile
 ```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/Ecommerce-UI-Automation-Framework.git
-
-# 2. Navigate into the project directory
+git clone https://github.com/princepadaliya31/Ecommerce-UI-Automation-Framework.git
 cd Ecommerce-UI-Automation-Framework
-
-# 3. Verify environment and compile test classes
 mvn clean test-compile
 ```
 
----
-
-## 11. Execution Commands
-
-### Full Suite Execution (Default Headless Chrome)
+### 2. Full Suite Execution (Default Headless Chrome)
 ```bash
 mvn clean test -Dheadless=true
 ```
 
-### Execution by Test Groups
+### 3. Execution by TestNG Groups
 ```bash
-# Run Smoke Test Suite (10 tests)
+# Run Smoke Test Suite
 mvn test -Dgroups=smoke -Dheadless=true
 
-# Run Full Regression Test Suite (51 tests)
+# Run Full Regression Test Suite
 mvn test -Dgroups=regression -Dheadless=true
 
-# Run End-to-End Customer Journey (1 test / 25 steps)
+# Run End-to-End Customer Journey
 mvn test -Dgroups=e2e -Dheadless=true
 ```
 
-### Cross-Browser Execution Options
+### 4. Cross-Browser Options
 ```bash
-# Google Chrome (Headed)
+# Google Chrome (Headed Mode)
 mvn test -Dbrowser=chrome -Dheadless=false
 
-# Google Chrome (Headless)
+# Google Chrome (Headless Mode)
 mvn test -Dbrowser=chrome -Dheadless=true
 
-# Mozilla Firefox (Headless - Requires local Firefox installation)
+# Mozilla Firefox (Requires local Firefox installation)
 mvn test -Dbrowser=firefox -Dheadless=true
 
-# Microsoft Edge (Headless - Requires local Edge installation)
+# Microsoft Edge (Requires local Edge installation)
 mvn test -Dbrowser=edge -Dheadless=true
 ```
 
-### Optional Remote Selenium Grid Execution
+### 5. Remote Selenium Grid Options
 ```bash
 mvn test -Dgrid.enabled=true -Dgrid.url=http://localhost:4444/ -Dbrowser=chrome -Dheadless=true
 ```
 
 ---
 
-## 12. Test Data Management
-* **Inline DataProviders:** Used for quick parameterization within test classes.
-* **External CSV Datasets:** Negative login test scenarios are externalized in `src/test/resources/testdata/login-data.csv`.
-* **CSV Parsing Utility:** `TestDataUtils.java` utilizes OpenCSV to parse CSV rows into `Object[][]` arrays for TestNG DataProviders. Double quotes enclose strings containing commas to prevent column shifting.
+## 📤 Step-by-Step: How to Push to GitHub
 
----
+If modifying or updating your project code locally, execute the following commands to keep GitHub updated:
 
-## 13. Reports & Artifacts
-* **TestNG / Surefire Reports:** Standard XML and HTML summary reports are generated at `target/surefire-reports/index.html`.
-* **Allure Reports:** Raw Allure JSON result files are output to `target/allure-results/`.
-  To view the interactive Allure report in browser:
-  ```bash
-  allure serve target/allure-results
-  ```
-  Alternatively, generate standalone HTML files:
-  ```bash
-  mvn allure:report
-  ```
-* **Failure Screenshots:** Generated locally on test failure at `target/screenshots/` with timestamped and sanitized filenames.
+```bash
+# 1. Check current repository status
+git status
 
----
+# 2. Stage all modified/new files
+git add .
 
-## 14. CI/CD Integration
-The project includes a GitHub Actions continuous integration workflow defined in `.github/workflows/automation.yml`.
-* **Triggers:** Pushes to `main`, Pull Requests targeting `main`, and manual execution via `workflow_dispatch`.
-* **Pipeline Environment:** Runs on `ubuntu-latest` with JDK 21 and Maven caching.
-* **Execution:** Executes `mvn clean test -Dheadless=true`.
-* **Artifact Archiving:** Uploads `surefire-reports`, `allure-results`, and `failure-screenshots` (on failure) as downloadable pipeline artifacts.
+# 3. Create a conventional commit
+git commit -m "feat: enhance framework documentation and test execution parameters"
 
----
-
-## 15. Cross-Browser Status & Verification
-* **Google Chrome:** Fully verified and operational (**100% pass rate**).
-* **Mozilla Firefox:** Configured in `DriverFactory` via `FirefoxOptions`. (Not executed locally due to missing Firefox binary on execution environment).
-* **Microsoft Edge:** Configured in `DriverFactory` via `EdgeOptions`. (Not executed locally due to remote driver endpoint version mismatch on host environment).
-
----
-
-## 16. Manual Testing & Quality Documentation
-Located in the `docs/` directory:
-* [`TestPlan.md`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/TestPlan.md): Comprehensive master test plan covering scope, strategy, environments, and risks.
-* [`TestScenarios.md`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/TestScenarios.md): High-level feature scenarios covering authentication, catalog, cart, and checkout.
-* [`TestCases.csv`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/TestCases.csv): Formal test case repository with steps, preconditions, expected results, and statuses.
-* [`BugReports.md`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/BugReports.md): Failure classification log, confirmed defects statement, and sample bug report format.
-* [`RequirementsTraceabilityMatrix.csv`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/RequirementsTraceabilityMatrix.csv): Requirements-to-test traceability matrix.
-* [`TestExecutionSummary.md`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/TestExecutionSummary.md): Detailed metrics and pass rate breakdown.
-
----
-
-## 17. Actual Execution Results
-
-```
-[INFO] Running TestSuite
-[INFO] Tests run: 52, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 134.7 s -- in TestSuite
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
+# 4. Push changes to GitHub main branch
+git push origin main
 ```
 
 ---
 
-## 18. Known Limitations
-1. **Third-Party Application Scope:** SauceDemo is a static demo application; backend database operations, email receipts, and real payment gateway processing are not supported by the AUT.
-2. **Environment Baseline:** Full suite verification was executed on Windows 11 with Chrome 154 in headless mode. Other browser binaries (Firefox) were not available on the execution host.
+## 📊 Allure Reporting & Failure Screenshots
+
+- **Surefire Reports:** Standard XML/HTML summaries generated at `target/surefire-reports/index.html`.
+- **Allure Raw Results:** Generated at `target/allure-results/`.
+- **Failure Screenshots:** Automatically generated on failure at `target/screenshots/`.
+
+### Viewing Allure Reports
+To launch the interactive Allure server in your browser:
+```bash
+allure serve target/allure-results
+```
+
+Alternatively, generate static HTML report files:
+```bash
+mvn allure:report
+```
+
+Allure report features include:
+- **Overview Dashboard:** Execution duration, pass/fail ratios, environment attributes.
+- **Detailed Suite Breakdown:** Method steps, parameters, severity levels.
+- **Failure Attachments:** Viewport screenshots embedded directly inside failed test nodes.
 
 ---
 
-## 19. Future Improvements
-* Set up a Dockerized Selenium Grid cluster (`docker-compose`) for multi-browser parallel container execution.
-* Integrate cloud grid providers (BrowserStack / Sauce Labs) for mobile web responsive testing.
-* Expand CSV test datasets for checkout customer information negative validation scenarios.
+## ⚙️ CI/CD Integration
+
+This project includes a continuous integration workflow defined in `.github/workflows/automation.yml`.
+
+- **Triggers:** Pushes to `main`, Pull Requests targeting `main`, and manual execution via `workflow_dispatch`.
+- **Environment:** Runs on `ubuntu-latest` using Java 21 with Maven caching.
+- **Commands:** Executes `mvn clean test -Dheadless=true`.
+- **Artifact Archiving:** Uploads `surefire-reports`, `allure-results`, and `failure-screenshots` on workflow completion.
 
 ---
 
-## 20. Learning Outcomes
-Through building this automation framework, key QA engineering competencies were demonstrated:
-* Designing robust Page Object Model (POM) structures that decouple test logic from locators.
-* Managing thread-safe browser sessions using Java `ThreadLocal` and Selenium Manager.
-* Implementing explicit wait synchronization strategies to handle dynamic React DOM re-renders.
-* Applying monetary precision validation using `java.math.BigDecimal` for financial calculations.
-* Externalizing test data using TestNG DataProviders and CSV file readers.
-* Setting up automated CI pipelines with GitHub Actions, Allure reporting, and failure screenshot capturing.
+## 📄 QA Portfolio Documentation
+
+Located in the [`docs/`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/) folder:
+
+| Document | Purpose |
+|---|---|
+| [`TestPlan.md`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/TestPlan.md) | Master Test Plan outlining testing scope, objectives, environment matrix, and risk analysis. |
+| [`TestScenarios.md`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/TestScenarios.md) | High-level business feature test scenarios across all application modules. |
+| [`TestCases.csv`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/TestCases.csv) | Comprehensive test case repository detailing steps, preconditions, and execution outcomes. |
+| [`BugReports.md`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/BugReports.md) | Failure classification matrix and sample defect report format for interview practice. |
+| [`RequirementsTraceabilityMatrix.csv`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/RequirementsTraceabilityMatrix.csv) | Requirements-to-test case traceability matrix mapping AUT features. |
+| [`TestExecutionSummary.md`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/TestExecutionSummary.md) | Executive test summary report detailing pass rates (52/52 PASSED) and execution duration. |
+| [`InterviewGuide.md`](file:///c:/Users/princ/OneDrive/Desktop/QA_UI/docs/InterviewGuide.md) | In-depth technical interview Q&A guide explaining framework design choices. |
+
+---
+
+## 👤 Author & Acknowledgments
+
+- **Author:** Prince Padaliya
+- **GitHub Repository:** [princepadaliya31/Ecommerce-UI-Automation-Framework](https://github.com/princepadaliya31/Ecommerce-UI-Automation-Framework)
+- **Target Application:** [SauceDemo (Swag Labs)](https://www.saucedemo.com/)
+- **License:** [MIT License](LICENSE)
