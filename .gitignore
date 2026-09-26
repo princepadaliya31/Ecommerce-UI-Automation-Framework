@@ -1,0 +1,25 @@
+# Target build directory
+target/
+
+# IDE files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+
+# Allure Reports & Results
+allure-results/
+allure-report/
+
+# Logs & Screenshots
+*.log
+screenshots/*.png
+!screenshots/.gitkeep
+reports/*.html
+!reports/.gitkeep
+
+# OS generated files
+.DS_Store
+Thumbs.db

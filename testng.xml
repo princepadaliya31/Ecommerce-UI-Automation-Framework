@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SauceDemo UI Automation Suite" verbose="1" parallel="methods" thread-count="2">
+
+    <listeners>
+        <listener class-name="com.qa.listeners.TestListener"/>
+        <listener class-name="com.qa.listeners.AnnotationTransformer"/>
+    </listeners>
+
+    <test name="SauceDemo Functional & E2E Tests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.qa.tests.LoginTest"/>
+            <class name="com.qa.tests.InventoryTest"/>
+            <class name="com.qa.tests.ProductDetailsTest"/>
+            <class name="com.qa.tests.CartTest"/>
+            <class name="com.qa.tests.CheckoutTest"/>
+            <class name="com.qa.tests.EndToEndTest"/>
+        </classes>
+    </test>
+</suite>
