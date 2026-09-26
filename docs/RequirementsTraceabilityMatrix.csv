@@ -1,0 +1,21 @@
+Requirement ID,Requirement/Feature,Test Case IDs,Automation Class,Automation Status
+REQ_AUTH_01,User authentication with valid standard_user,TC_LOGIN_001,com.qa.tests.LoginTest,Automated
+REQ_AUTH_02,Error banner rendering for locked_out_user,TC_LOGIN_002,com.qa.tests.LoginTest,Automated
+REQ_AUTH_03,Error banner rendering for invalid credentials,TC_LOGIN_003,com.qa.tests.LoginTest,Automated
+REQ_AUTH_04,Mandatory field validation for empty username/password,TC_LOGIN_004; TC_LOGIN_005,com.qa.tests.LoginTest,Automated
+REQ_AUTH_05,Session logout and login page redirection,TC_LOGOUT_001,com.qa.tests.LoginTest,Automated
+REQ_INV_01,Product catalog rendering of 6 default items,TC_INV_001,com.qa.tests.InventoryTest,Automated
+REQ_INV_02,Item addition to cart and dynamic badge counter update,TC_INV_002,com.qa.tests.InventoryTest,Automated
+REQ_INV_03,Item removal from inventory and badge counter decrement,TC_INV_003,com.qa.tests.InventoryTest,Automated
+REQ_PD_01,Product Details page navigation and info accuracy,TC_PD_001,com.qa.tests.ProductDetailsTest,Automated
+REQ_PD_02,Add to cart functionality from Product Details page,TC_PD_002,com.qa.tests.ProductDetailsTest,Automated
+REQ_SORT_01,Product catalog sorting by Price (low to high),TC_SORT_001,com.qa.tests.InventoryTest,Automated
+REQ_SORT_02,Product catalog sorting by Name (A to Z),TC_SORT_002,com.qa.tests.InventoryTest,Automated
+REQ_CART_01,Single and multiple product addition to shopping cart,TC_CART_001; TC_CART_002,com.qa.tests.CartTest,Automated
+REQ_CART_02,Dynamic cart badge counter updates across add and remove actions,TC_CART_003; TC_CART_006,com.qa.tests.CartTest,Automated
+REQ_CART_03,Product title and BigDecimal price verification in cart,TC_CART_004; TC_CART_005,com.qa.tests.CartTest,Automated
+REQ_CART_04,Cart item removal and complete cart evacuation,TC_CART_007; TC_CART_008,com.qa.tests.CartTest,Automated
+REQ_CART_05,Cart navigation persistence and complex mixed add/remove state validation,TC_CART_009; TC_CART_010; TC_CART_011,com.qa.tests.CartTest,Automated
+REQ_CHK_01,Checkout customer information form field validation,TC_CHECKOUT_001; TC_CHECKOUT_003,com.qa.tests.CheckoutTest,Automated
+REQ_CHK_02,Checkout overview price calculation verification (Subtotal + Tax = Total),TC_CHECKOUT_002,com.qa.tests.CheckoutTest,Automated
+REQ_E2E_01,Complete e-commerce purchasing lifecycle from login to order confirmation,TC_E2E_001,com.qa.tests.EndToEndTest,Automated
